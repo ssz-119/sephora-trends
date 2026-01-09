@@ -2,13 +2,11 @@
 
 # Table of Contents
 - [Project Overview](#project-overview)
-  - Objectives
-- [Tools and Skills](#tools-and-skills)
-- [Dataset](#dataset)
-- [Key Analysis Questions](#key-analysis-questions)
-- [SQL Tasks Performed](#sql-tasks-performed)
-- [Summary of Findings](#summary-of-findings)
-- [Visualizations](#visualizations)
+  - [SQL Skills Demonstrated](#sql-skills-demonstrated)
+- [Key Business Questions](#key-business-questions)
+
+- [Key Insights](#key-insights)
+- [Visualizations](#visualizations) - might delete later
    - Top 10 brands by review count
    - Boxplot or bar chart: Rating vs. Price Tier
    - Word cloud: Common words in 5-star vs. 1-star reviews
@@ -16,33 +14,24 @@
 - [Key Links](#key-links)
 
 # Project Overview
-This project explores makeup/skincare data and customer reviews from Sephora to discover patterns aimed to provide data-driven insights for potential marketing and product development strategies. From preparing to exploring to analyzing the data, all sections were executed using SQL then analysis was complemented with Tableau visualizations.
+This project evaluates Sephora site's product and customer reviews data to address common business questions around product quality, customer engagement, and customer segmentation. Data cleaning and exploratory analysis were conducted in RStudio before loading the data into MySQL for SQL-based analysis and aggregation.
 
-## Objectives
-- Analyze patterns in pricing and reviews
-- Identify trends in brand and product popularity
-  
-# Tools and Skills
-- MySQL
+## SQL Skills Demonstrated
+JOINs, aggregations, weighted averages, window functions, CASE statements, segmentation, ranking, and business-driven analytical querying in MySQL
 
-# Dataset
-**Source:** [Kaggle: Sephora Products and Skincare Reviews](https://www.kaggle.com/datasets/nadyinky/sephora-products-and-skincare-reviews)
+# Key Business Questions
+1. Which brands deliver the highest customer-rated quality at scale?
+2. How does customer engagement (loves per review) relate to ratings and review volume?
+3. Which products and brands perform best for different skin types?
 
-**Tables Used:**
-- products.csv – brand, product type, price, ingredients
-- reviews.csv – review title, content, rating
-
-# Key Analysis Questions
-
-# SQL Tasks Performed
-
-# Summary of Findings
+# Key Insights
 
 # Visualizations
 
 # Limitations
 
 # Key Links
+**Dataset Source:** [Kaggle: Sephora Products and Skincare Reviews](https://www.kaggle.com/datasets/nadyinky/sephora-products-and-skincare-reviews)
 
 
 

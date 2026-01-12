@@ -19,6 +19,6 @@
 2. For brands with high popularity + high satisfaction (like BondiBoost): Use strong engagement to launch new products or upsell to existing customers. Highlight best-selling and top-loved items in campaigns to maintain momentum.
 3. General insight: Weighted ratings help identify high-quality brands even with lower review counts. Combine ratings and engagement metrics (reviews, loves) to guide promotion directions, organize inventory, and make strategic decisions.
 
-**View Code:** [Q1 SQL File](https://github.com/ssz-119/sephora-trends/blob/main/sql/q1_brand_quality.sql)
+**View SQL Query:** [Q1 SQL File](https://github.com/ssz-119/sephora-trends/blob/main/sql/q1_brand_quality.sql)
 
 

@@ -33,7 +33,7 @@ GROUP BY rating_lv
 ORDER BY rating_lv DESC;
 
 -- Query 3: Review volume + rating vs Engagement
--- Query 3: View trends in customer engagement (loves per review) across product review volume and rating bins.
+-- View trends in customer engagement (loves per review) across product review volume and rating bins.
 -- This shows how engagement varies by both product popularity (number of reviews) and product rating to identify which products drive the most meaningful customer interaction.
     rating,
     CASE 

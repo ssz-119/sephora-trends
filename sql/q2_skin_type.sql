@@ -26,6 +26,7 @@ scored_products AS (
     FROM reviews r
     JOIN products p ON p.product_id = r.product_id
     JOIN skin_type_avg s ON s.skin_type = r.skin_type
+    WHERE p.primary_category IN ('Makeup', 'Skincare')
     GROUP BY
         r.skin_type,
         p.product_id,

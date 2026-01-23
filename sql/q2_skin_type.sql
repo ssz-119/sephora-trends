@@ -1,24 +1,50 @@
--- Business Question 2: 
--- Which products and brands perform best for different skin types?
--- Find the top 5 highest rated product for each skin type (dry, combination, normal, oily, no type), 
--- considering only products with at least 100 reviews.
--- Purpose: Utilize information for targeted marketing, promoting personalized top products to each segmentation of skin type.
+-- Business Question 2:
+-- What are the highest rated products for each skin type segmentation?
+-- Identify the top 5 highest-rated products for each skin type (dry, combination, normal, oily),
+-- using a Bayesian weighted rating to adjust for low-review products.
+-- Purpose: Support targeted marketing by highlighting personalized top products for each skin type segment.
 
-SELECT skin_type, product_id, product_name, avg_rating
-FROM (
-	SELECT
-		r.product_id,
-        p.product_name,
+WITH skin_type_avg AS (
+    SELECT
+        skin_type,
+        AVG(rating) AS global_avg_rating
+    FROM reviews
+    WHERE skin_type IN ('dry', 'combination', 'normal', 'oily')
+    GROUP BY skin_type
+),
+scored_products AS (
+    SELECT
         r.skin_type,
+        p.product_id,
+        p.product_name,
+        COUNT(*) AS review_count,
         AVG(r.rating) AS avg_rating,
+        (
+            (COUNT(*) / (COUNT(*) + 50)) * AVG(r.rating)
+          + (50 / (COUNT(*) + 50)) * s.global_avg_rating
+        ) AS weighted_rating
+    FROM reviews r
+    JOIN products p ON p.product_id = r.product_id
+    JOIN skin_type_avg s ON s.skin_type = r.skin_type
+    GROUP BY
+        r.skin_type,
+        p.product_id,
+        p.product_name,
+        s.global_avg_rating
+),
+ranked_products AS (
+    SELECT
+        *,
         ROW_NUMBER() OVER (
-			PARTITION BY r.skin_type
-				ORDER BY AVG(r.rating) DESC
-			) AS rated_per_type
-	FROM reviews r
-    JOIN products p ON r.product_id = p.product_id
-	WHERE p.reviews >= 100
-    GROUP BY r.product_id, p.product_name, r.skin_type
-) t
-WHERE rated_per_type <= 5
-ORDER BY skin_type, avg_rating DESC;
+            PARTITION BY skin_type
+            ORDER BY weighted_rating DESC
+        ) AS rn
+    FROM scored_products
+)
+SELECT
+    skin_type,
+    product_id,
+    product_name,
+    weighted_rating
+FROM ranked_products
+WHERE rn <= 5;
